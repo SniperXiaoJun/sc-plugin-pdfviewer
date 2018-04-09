@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) CFCA 2016.
+  -->
+
+<com.cfca.mobile.pdfreader.CFCAPDFViewWithSign xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pdfview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/activity_cfcapdf"
+    >
+</com.cfca.mobile.pdfreader.CFCAPDFViewWithSign>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 插件的Id，安装后注册的Id为此id加js-moudle的name属性,即cordova_plugins.js里的id属性 -->
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="sc-plugin-pdfviewer" version="1.0.0">
+    <!-- 插件名称 -->
+    <name>SCPDFViewer</name>
+    <!-- 插件描述 -->
+    <description>sc pdf viewer</description>
+    <!-- js文件的地址，安装后路径为：plugins/插件Id/src属性值 -->
+    <js-module name="SCPDFViewer" src="www/pdfviewer.js">
+    <!-- 跟asserts/cordova_plugins.js中填clobbers的值一样 -->
+        <clobbers target="SCPDFViewer"/>
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+        <!-- config-file中包含的这段会原封不动的插入到config.xml文件中 -->
+           <feature name="SCPDFViewer">
+				<param name="android-package" value="com.sc.pdfviewer.PDFPlugin" />
+			</feature>
+        </config-file>
+		
+		<config-file parent="/resources" target="res/values/strings.xml">
+            <string name="verify_seal">验章</string>
+            <string name="sign">签名</string>
+            <string name="share">分享</string>
+            
+            <string name="pick_file">选择文件</string>
+            <string name="switch_vertical_horizontal">切换浏览</string>
+            
+            <string name="image_description">图标</string>
+            <string name="verify_result_valid">有效签章</string>
+            <string name="verify_result_abnormal">异常签章</string>
+            <string name="verify_result_invalid">无效签章</string>
+            <string name="sign_person">签章人：</string>
+            <string name="verify_result_details_valid_label">自应用签名以来，文档未被修改，签名人的身份被确认</string>
+            <string name="verify_result_details_abnormal_label">自应用签名以来，文档未被修改，但签名人的身份未被确认</string>
+            <string name="verify_result_details_invalid_label">自应用签名以来，文档已被修改，签名无效</string>
+            
+            <string name="verify_result_person_format">签章人:\n%1$s</string>
+            <string name="verify_result_time_format">日期: %1$s</string>
+            <string name="verify_result_address_format">地址: %1$s</string>
+            <string name="verify_result_reason_format">原因: %1$s</string>
+            <string name="verify_result_contact_format">联系人信息: %1$s</string>
+            <string name="unknown">未知</string>
+            <string name="no_verify_signature_result">当前文件未签名</string>
+            <string name="err_no_pdf_opened">请先打开PDF文件</string>
+            <string name="ulan_open_key">请打开蓝牙盾</string>
+            <string name="ulan_connected">蓝牙盾已连接，请输入密码</string>
+            <string name="confirm">确定</string>
+            <string name="signing">正在签名&#8230;&#8230;&#8230;</string>
+            <string name="sign_success">签名成功</string>
+            <string name="sign_failure">签名失败</string>
+            <string name="ulan_disconnected">蓝牙盾已断开连接</string>
+            <string name="err_pin_is_empty">请输入有效密码</string>
+            <string name="file_save_as">文件另存为</string>
+            <string name="err_illegal_file_name">该文件不是以pdf结尾的文件</string>
+            <string name="err_create_file_failed">文件无法创建，请重新命名</string>
+            <string name="err_seal_position_invalid">签章位置不符合要求，请重新放置签章位置</string>
+            <string name="err_no_seal">当前不存在签章图片</string>
+            <string name="pdf_sign_hint">请输入签名密码(111111)</string>
+            <string name="pdf_needs_password">此文档受密码保护</string>
+            <string name="pdf_password_hint">请输入文档密码</string>
+            <string name="err_password_protected">该文档受密码保护，不能进行签名</string>
+            
+            <string name="icon">图标</string>
+            <string name="unsigned">未签名</string>
+            <string name="signed">已签名</string>
+            <string name="external_storage_rationale">需要使用外部存储权限用于读取或存储PDF文件</string>
+            <string name="returned_from_app_settings_to_activity">设置完成</string>
+            <string name="rationale_ask_again">如果没有请求的权限，此应用可能无法正常工作。打开应用设置以修改应用权限</string>
+            <string name="title_settings_dialog">权限请求</string>
+            <string name="setting">设置</string>
+            <string name="parse_file_path_failed">解析文件路径失败</string>
+            
+            <!-- Strings related to Settings -->
+            
+            <string name="pref_title_sign_type_messages">签名类型</string>
+            <string-array name="pref_sign_type_list_titles">
+                <item>RSAwithSHA1</item>
+                <item>RSAwithSHA256</item>
+                <item>SM2withSM3</item>
+            </string-array>
+            <string-array name="pref_sign_type_list_values">
+                <item>1</item>
+                <item>2</item>
+                <item>3</item>
+            </string-array>
+            
+            
+            <string name="pref_title_ringtone">Ringtone</string>
+            <string name="pref_ringtone_silent">Silent</string>
+            
+            <string name="display_setting">显示设置</string>
+            <string name="pref_description_pdf_layout_recommendations">竖版布局为垂直连续展示, 可垂直滚动;横版布局每屏展示一页, 可水平滑动;默认为竖版布局</string>
+            <string name="pref_title_pdf_layout_recommendations">竖版布局</string>
+            <string name="sign_setting">签名设置</string>
+            <string name="pref_title_timestamp_recommendations">签名时间戳</string>
+            <string name="pref_description_timestamp_recommendations">文档签名时签名中是否需要包含时间戳</string>
+            <string name="not_supported">SM2签名目前暂不支持</string>
+            <string name="unsupported">暂不支持</string>
+            <string name="mlog">MLog日志</string>
+            <string name="mlog_action">com.cfca.mobile.pdfmodule.MLOG_ACTION</string>
+            <string name="mlog_activity">.activity.MLogActivity</string>
+            <string name="mlog_package">com.cfca.mobile.pdfmodule</string>
+            <string name="loading">正在读取MLog日志文件</string>
+            <string name="pref_title_pdf_sign_visible">签章图片可见</string>
+            <string name="pref_description_pdf_sign_visible">如果签章图片不可见时，签章后的PDF无签章图片但可验签成功</string>
+		</config-file>
+		
+		<config-file parent="/resources" target="res/values/colors.xml">
+            
+            <color name="colorPrimary">#F45D1E</color>
+            <color name="colorPrimaryDark">#DD1848</color>
+            <color name="colorAccent">#DE1E44</color>
+            <color name="color_toolbar_start">#F45D1E</color>
+            <color name="color_toolbar_end">#DD1848</color>
+            
+            <color name="color_normal">#4A4A4A</color>
+            <color name="color_text_selected">#E14B28</color>
+            <color name="color_pdf_bottom_toolbar_background">#E6F5F5F5</color>
+            <color name="color_pdf_bottom_toolbar_outer">#B2B2B2</color>
+            
+            <color name="black_overlay">#66000000</color>
+            <color name="color_result_normal">#469B00</color>
+            <color name="color_result_abnormal">#E46C00</color>
+            <color name="color_trivial">#8F8E94</color>
+            <color name="color_divider">#D5D4DB</color>
+            <color name="color_emphasis">#333333</color>
+            <color name="color_result_invalid">#F23D3D</color>
+            <color name="verify_result_background">#EEEEF4</color>
+            
+            <color name="cpv_default_color">#219653</color>
+            <color name="color_ulan_background">#E3FFFFFF</color>
+            <color name="color_ulan_pin_border">#979797</color>
+            <color name="color_seekbar_background">#20000000</color>
+            <color name="color_seal_corner">#E14B28</color>
+		</config-file>
+		
+		<config-file parent="/resources" target="res/values/styles.xml">
+            
+            <style name="CAAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+                <!-- Customize your theme here. -->
+                <item name="colorPrimary">@color/colorPrimary</item>
+                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+                <item name="colorAccent">@color/colorAccent</item>
+                <item name="pdfItemStyle">@style/PdfItemStyle</item>
+            </style>
+            
+            <style name="CAAppTheme.NoActionBar">
+                <item name="windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
+            </style>
+            
+            <style name="CAAppTheme.NoActionBar.NullBackground">
+                <item name="android:windowBackground">@null</item>
+            </style>
+            
+            <style name="CAAppTheme.NoActionBar.NullBackground.FullScreen">
+                <item name="android:windowFullscreen">true</item>
+            </style>
+            
+            <style name="CAAppTheme.NoActionBar.FullScreen">
+                <item name="android:windowFullscreen">true</item>
+            </style>
+            
+            <style name="CAAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            
+            <style name="CAAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+            
+            <style name="FullscreenTheme" parent="CAAppTheme">
+                <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+                <item name="android:windowActionBarOverlay">true</item>
+                <item name="android:windowBackground">@null</item>
+            </style>
+            
+            <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+                <item name="android:background">@color/black_overlay</item>
+            </style>
+            
+            <style name="TrivialTextStyle" parent="@android:style/TextAppearance">
+                <item name="android:textSize">14sp</item>
+                <item name="android:textColor">@color/color_trivial</item>
+            </style>
+            
+            <style name="EmphasisTextStyle" parent="@android:style/TextAppearance">
+                <item name="android:textSize">18sp</item>
+                <item name="android:textColor">@color/color_emphasis</item>
+            </style>
+            
+            <style name="SealButtonTextStyle" parent="@android:style/TextAppearance">
+                <item name="android:textSize">14sp</item>
+                <item name="android:textColor">@android:color/white</item>
+            </style>
+            
+            <style name="ValidStyle" parent="@android:style/TextAppearance">
+                <item name="android:textSize">18sp</item>
+                <item name="android:textColor">@color/color_result_normal</item>
+            </style>
+            
+            <style name="AbnormalStyle" parent="@android:style/TextAppearance">
+                <item name="android:textSize">18sp</item>
+                <item name="android:textColor">@color/color_result_abnormal</item>
+            </style>
+            
+            <style name="InvalidStyle" parent="@android:style/TextAppearance">
+                <item name="android:textSize">18sp</item>
+                <item name="android:textColor">@color/color_result_invalid</item>
+            </style>
+            
+            <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
+                <item name="windowActionBar">false</item>
+                <!-- 没有标题栏 -->
+                <item name="windowNoTitle">true</item>
+                
+                <!--边框-->
+                <item name="android:windowFrame">@null</item>
+                
+                <!--是否浮现在activity之上-->
+                <item name="android:windowIsFloating">true</item>
+                
+                <!-- 是否透明 -->
+                <item name="android:windowIsTranslucent">true</item>
+                
+                <!--除去title-->
+                <item name="android:windowNoTitle">true</item>
+                
+                <!-- 对话框是否有遮盖 -->
+                <item name="android:windowContentOverlay">@null</item>
+                
+                <!-- 对话框出现时背景是否变暗 -->
+                <item name="android:backgroundDimEnabled">true</item>
+                
+                <!-- 着色缓存（一般不用）-->
+                <item name="android:colorBackgroundCacheHint">@null</item>
+                
+                <!--对话框背景(重要)-->
+                <item name="android:windowBackground">@null</item>
+                
+                <!-- 动画 -->
+                <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
+                
+                <!-- 输入法弹出时自适应 -->
+                <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+                
+                <item name="windowActionModeOverlay">true</item>
+            </style>
+            
+            <style name="PdfItemStyle" parent="android:Widget.Holo.Light">
+                <item name="android:orientation">horizontal</item>
+                <item name="android:background">@android:color/white</item>
+                <item name="android:layout_width">match_parent</item>
+                <item name="android:layout_height">wrap_content</item>
+                <item name="android:gravity">center_vertical</item>
+                <item name="android:paddingTop">16dp</item>
+                <item name="android:paddingBottom">16dp</item>
+                <item name="android:paddingLeft">12dp</item>
+                <item name="android:paddingRight">12dp</item>
+            </style>
+
+		</config-file>
+        
+        <config-file parent="/resources" target="res/values/dimens.xml">
+            <dimen name="activity_horizontal_margin">16dp</dimen>
+            <dimen name="activity_vertical_margin">16dp</dimen>
+            <dimen name="cpv_default_thickness">4dp</dimen>
+            <dimen name="fab_margin">16dp</dimen>
+        </config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity android:name="com.sc.pdfviewer.CFCAPDFActivity" android:theme="@style/CAAppTheme"/>
+		</config-file>
+		
+		
+        <!-- 本地代码，有多个文件就写多个source-file，src对应本项目，target对应安装后的目录 -->
+		<source-file src="src/android/source/BasePresenter.java" target-dir="src/com/sc/pdfviewer"/>
+        <source-file src="src/android/source/BaseView.java" target-dir="src/com/sc/pdfviewer"/>
+		<source-file src="src/android/source/CFCAPDFActivity.java" target-dir="src/com/sc/pdfviewer"/>
+		<source-file src="src/android/source/CFCAPDFPresenter.java" target-dir="src/com/sc/pdfviewer"/>
+		<source-file src="src/android/source/CFCAPDFPresenterImpl.java" target-dir="src/com/sc/pdfviewer"/>
+		<source-file src="src/android/source/CFCAPDFPresenterView.java" target-dir="src/com/sc/pdfviewer"/>
+		<source-file src="src/android/source/CircularProgressView.java" target-dir="src/com/sc/pdfviewer"/>
+		<source-file src="src/android/source/ConstantsUtils.java" target-dir="src/com/sc/pdfviewer"/>
+		<source-file src="src/android/source/FileTraverseListener.java" target-dir="src/com/sc/pdfviewer"/>
+        <source-file src="src/android/source/MyResource.java" target-dir="src/com/sc/pdfviewer"/>
+		
+		<source-file src="src/android/source/PDFPlugin.java" target-dir="src/com/sc/pdfviewer"/>
+		<source-file src="src/android/source/Utils.java" target-dir="src/com/sc/pdfviewer"/>
+	
+		
+		<source-file src="src/android/res/values-v21/dimens.xml" target-dir="res/values-v21"/>
+        <source-file src="src/android/res/values/attrs.xml" target-dir="res/values"/>
+		<source-file src="src/android/res/values-v21/styles.xml" target-dir="res/values-v21"/>
+		
+		<source-file src="src/android/res/layout/activity_cfcapdf.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/content_cfcapdf.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/loading.xml" target-dir="res/layout"/>
+
+		<framework src="src/android/build.gradle" custom="true" type="gradleReference"/>
+		<resource-file src="src/android/libs/CFCAMLog-2.1.jar" target="libs/CFCAMLog-2.1.jar"/>
+		<resource-file src="src/android/libs/CFCATrustSignPDFDS-v6.0.0.3.aar" target="libs/CFCATrustSignPDFDS-v6.0.0.3.aar"/>
+    </platform>
+    <!-- 其他平台的代码 -->
+	
+	
+</plugin>

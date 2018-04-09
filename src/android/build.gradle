@@ -1,0 +1,31 @@
+ repositories {
+	flatDir {
+        dirs 'libs'
+    } 
+}
+
+android {
+splits {
+    // Configures screen ABI split settings
+    abi {
+      // Enable ABI APK splits
+      enable true
+      // By default all ABIs are included, so use reset() and include to specify that we only
+      // want APKs for armeabi-v7a
+      // Resets the list of ABIs that Gradle should create APKs for to none
+      reset()
+
+      // Specifies a list of ABIs that Gradle should create APKs for
+      include "armeabi-v7a" /*,"x86" */
+      // Specify that we do not want to also generate a universal APK that includes all ABIs
+      universalApk false
+    }
+  }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile(name:'CFCATrustSignPDFDS-v6.0.0.3', ext:'aar')
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:support-v4:24.2.1'
+}
