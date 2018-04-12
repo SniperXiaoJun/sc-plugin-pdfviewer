@@ -301,6 +301,22 @@
 		<resource-file src="src/android/libs/CFCATrustSignPDFDS-v6.0.0.3.aar" target="libs/CFCATrustSignPDFDS-v6.0.0.3.aar"/>
     </platform>
     <!-- 其他平台的代码 -->
-	
-	
+
+    <platform name="ios">
+        <source-file src="src/ios/PDFViewerPlugin.mm" />
+        <header-file src="src/ios/PDFViewerPlugin.h" />
+        <header-file src="src/ios/TrustSignPDFDS.h" />
+
+        <source-file src="src/ios/libTrustSignPDFDS.a" framework="true"/>
+        <source-file src="src/ios/public_libs/libcrypto_1001e_0003_n.a" framework="true"/>
+        <source-file src="src/ios/public_libs/libMLog_4003.a" framework="true"/>
+        <source-file src="src/ios/public_libs/libsmkernel_4007_n.a" framework="true"/>
+
+        <config-file target="config.xml" parent="/widget">
+
+            <feature name="SCPDFViewer">
+                <param name="ios-package" value="PDFViewerPlugin" />
+            </feature>
+        </config-file>
+    </platform>
 </plugin>

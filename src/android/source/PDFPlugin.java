@@ -23,26 +23,24 @@ import java.io.IOException;
 
 public class PDFPlugin extends CordovaPlugin {
     private Context context;
-    private CallbackContext callbackContext;
 
     /**
-     * 扫描身份证正反面请求码
+     *
      */
     @Override
     public boolean execute(String action, String rawArgs, CallbackContext callbackContext) throws JSONException {
-        this.context = cordova.getActivity();
-        this.callbackContext = callbackContext;
-        if ("viewpdf".equals(action)) {
-            if (!TextUtils.isEmpty(rawArgs)) {
-                File file = base64ToFile(rawArgs);
-                if (file != null) {
-                    Uri uri = Uri.fromFile(file);
-                    Intent intent = new Intent(context, CFCAPDFActivity.class);
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.setData(uri);
-                    context.startActivity(intent);
+         this.context = cordova.getActivity();
+            if ("viewpdf".equals(action)) {
+                if (!TextUtils.isEmpty(args.get(0).toString())) {
+                    File file = base64ToFile(args.get(0).toString());
+                    if (file != null) {
+                        Uri uri = Uri.fromFile(file);
+                        Intent intent = new Intent(context, CFCAPDFActivity.class);
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(uri);
+                        context.startActivity(intent);
+                    }
                 }
-            }
             return true;
         }
         return super.execute(action, rawArgs, callbackContext);
